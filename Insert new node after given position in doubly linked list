@@ -1,0 +1,22 @@
+void addNode(Node *head, int pos, int data)
+{
+   // Your code here
+   Node *h = head;
+   Node *c = head;
+   Node *n = NULL;
+   
+   while(pos-- && c != NULL) {
+       c = c->next;
+   }
+   if(c != NULL) {
+       n = c->next;
+   }
+   Node *temp = new Node(data);
+   temp->next = n;
+   temp->prev = c;
+   c->next = temp;
+   if(n != NULL) {
+        n->prev = temp;
+   }
+   
+}
