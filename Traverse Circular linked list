@@ -1,0 +1,11 @@
+void printList(struct Node *head)
+{
+  struct Node *temp = head;
+  while(temp->next != head) {
+      printf("%d ", temp->data);
+      temp = temp->next;
+  }
+  if(temp != head) {
+      printf("%d ", temp->data);
+  }
+}
