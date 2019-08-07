@@ -2,30 +2,28 @@
 Given a linked list, delete N nodes after skipping M nodes 
 of a linked list until the last of the linked list.
 */
-
 void linkdelete(struct node  *head, int M, int N)
 {
     struct node *curr = head;
     struct node *temp = NULL;
     
-    while(curr && curr->next) {
-        for(int i = 1; i < M; i++) {
-            if(curr->next == NULL) {
-                return;
-            }
+    while(curr) {
+        for(int i = 1; i < M && curr != NULL; i++) {
             curr = curr->next;
         }
-        temp = curr;
-        for(int i = 0; i < N; i++) {
-            if(temp->next == NULL) {
-                curr->next = NULL;
-                return;
-            }
-            temp = temp->next;
+        if(curr == NULL) {
+            return;
         }
+        temp = curr->next;
+        for(int i = 0; i < N && temp != NULL; i++) {
+            struct node *p = temp;
+            temp = temp->next;
+            p->next = NULL;
+            free(p);
+            
+        }
+        curr->next = temp;
+        curr = temp;
         
-        curr->next = temp->next;
-        curr = temp->next;
     }
-    
 }
