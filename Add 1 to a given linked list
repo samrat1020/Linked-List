@@ -1,0 +1,25 @@
+Node *addOne(Node *head)
+{
+    head = reverseList(head);
+    
+    Node *h = head;
+    int c = 1;
+    while(c && h) {
+        int _data = h->data + c;
+        c = _data/10;
+        h->data = _data % 10;
+        h = h->next;
+    }
+    
+    head = reverseList(head);
+    
+    if(c == 1) {
+        Node *temp = newNode(c);
+        temp->next = head;
+        head = temp;
+        c = 0;
+    }
+    
+    
+    return head;
+}
