@@ -1,0 +1,56 @@
+Node* addTwoLists(Node* first, Node* second) {
+    int carry = 0;
+    struct Node *head = NULL;
+    struct Node *curr = NULL;
+    while(first && second) {
+        int value = first->data + second->data + carry;
+        carry = value/10;
+        struct Node *temp = new Node(value%10);
+        temp->data = value % 10;
+        if(head == NULL) {
+            head = temp;
+            curr = head;
+        } else {
+            curr->next = temp;
+            curr = curr->next;
+        }
+        first = first->next;
+        second = second->next;
+    }
+    
+    while(first) {
+        int value = first->data + carry;
+        carry = value/10;
+        struct Node *temp = new Node(value % 10);
+        temp->data = value % 10;
+        if(head == NULL) {
+            head = temp;
+            curr = head;
+        } else {
+            curr->next = temp;
+            curr = curr->next;
+        }
+        first = first->next;
+    }
+    while(second) {
+        int value = second->data + carry;
+        carry = value/10;
+        struct Node *temp = new Node(value%10);
+        temp->data = value % 10;
+        if(head == NULL) {
+            head = temp;
+            curr = head;
+        } else {
+            curr->next = temp;
+            curr = curr->next;
+        }
+        second = second->next;
+    }
+    
+    if(carry == 1) {
+        struct Node *temp = new Node(carry);
+        curr->next = temp;
+    }
+    
+    return head;
+}
