@@ -1,0 +1,17 @@
+Node *removeDuplicates(Node *root)
+{
+    struct Node *h = root;
+    set<int> st;
+    while(h && h->next) {
+        struct Node *temp = h->next;
+        st.insert(h->data);
+        if(st.count(temp->data)) {
+            h->next = temp->next;
+            free(temp);
+        } else {
+            h = h->next;
+        }
+    }
+    
+    return root;
+}
